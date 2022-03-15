@@ -70,8 +70,13 @@ class App extends Component {
                 Toggle cars</button>
 
               {/* eslint-disable-next-line array-callback-return */}
-              { cars }
-
+              <div style={{
+                width: 400,
+                margin: 'auto',
+                paddingTop: '20px'
+              }}>
+                { cars }
+              </div>
           </div>
     )
   }

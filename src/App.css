@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.input {}
+
+.input:active, input.focuses {
+  outline: none;
+}
+
+.input.green{
+  border: 1px solid green;
+}
+
+.input.bold{
+  border: 2px solid green;
+  font-weight: bold;
+}
+
+.input.red{
+  border: 1px solid red;
+}
