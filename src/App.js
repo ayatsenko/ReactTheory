@@ -5,6 +5,9 @@ import Car from './Car/Car'
 import ErrorBoundarys from './ErrorBoundary/ErrorBoundarys'
 import Counter from './Counter/Counter'
 
+// eslint-disable-next-line no-unused-vars
+export const ClickedContext = React.createContext(false)
+
 class App extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor (props) {
@@ -12,10 +15,11 @@ class App extends Component {
     super(props)
 
     this.state = {
+      clicked: false,
       cars: [
-        { name: 'Ford', year: '2018' }
-        // { name: 'Audi', year: '2016' },
-        // { name: 'Mazda', year: '2010' }
+        { name: 'Ford', year: 2018 },
+        { name: 'Audi', year: 2016 },
+        { name: 'Mazda', year: 2010 }
       ],
       pageTitle: 'React components',
       showCars: false
@@ -72,6 +76,7 @@ class App extends Component {
                 <Car
                     name = {car.name}
                     year = {car.year}
+                    index = {index}
                     onDelete = {this.deleteHandler.bind(this, index)}
                     onChangeName = { event => this.onChangeName(event.target.value, index)}
                 >
@@ -88,12 +93,16 @@ class App extends Component {
             {/* eslint-disable-next-line react/prop-types */}
               <h1>{this.props.title}</h1>
 
-              <Counter/>
+            <ClickedContext.Provider value={this.state.clicked}>
+              <Counter />
+            </ClickedContext.Provider>
               <hr />
               <button
                   style={{ marginTop: '20px' }}
                   onClick={this.toggleCarsHandler}>
                 Toggle cars</button>
+
+            <button onClick={() => this.setState({ clicked: true })}>Change clicked</button>
 
               {/* eslint-disable-next-line array-callback-return */}
               <div style={{
